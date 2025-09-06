@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARO Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles & Purple Palette */
+        :root {
+            --primary-color: #5d3fd3; /* Purple */
+            --secondary-color: #8b5cf6; /* Lighter Purple */
+            --background-color: #1a1a2e; /* Dark Blue/Purple background */
+            --card-background: #2a2a4f; /* Slightly lighter card background */
+            --text-color: #f0f0f0;
+            --border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Header & Navigation */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--background-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Glowing Section Divider */
+        .section-divider {
+            height: 2px;
+            background-color: var(--primary-color);
+            border: none;
+            margin: 40px auto;
+            width: 80%;
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color); /* Glow effect */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Gradient Overlay for Background Image */
+        .hero-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to top, rgba(26, 26, 46, 1), transparent 50%, rgba(26, 26, 46, 1)),
+                              linear-gradient(rgba(26, 26, 46, 0), rgba(26, 26, 46, 0) 50%, rgba(26, 26, 46, 0.7)),
+                              url('https://i.ibb.co/ccvSfNKt/f8373d322110e98419d228013b405636.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 36px;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-top: 10px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically on small screens */
+            gap: 15px; /* Space between buttons */
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 50px 20px;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .services-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Permanent Border and Glow */
+        .service-card {
+            background-color: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 0 15px var(--secondary-color);
+            position: relative;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Pop on Click Effect */
+        .service-card:active {
+            transform: scale(1.05);
+        }
+        
+        .service-card h3 {
+            color: var(--secondary-color);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* About Us Section */
+        #about {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 32px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-color);
+            border-top: 1px solid var(--card-background);
+        }
+
+        /* Responsive adjustments for desktop */
+        @media (min-width: 768px) {
+            .services-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .service-card {
+                flex: 1 1 30%;
+                max-width: 300px;
+            }
+            .hero-buttons {
+                flex-direction: row; /* Buttons side-by-side on larger screens */
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">MARO Services</div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-image-overlay"></div>
+            <div class="hero-text">
+                <h1>Hello, I'm MARO</h1>
+                <p>We provide Tech & IT Services in all technical fields.</p>
+                <div class="hero-buttons">
+                    <a href="https://t.me/AAEDTT" class="btn" target="_blank">Contact via Telegram</a>
+                    <a href="https://whatsapp.com/channel/0029VbB3ZvnLNSa2noBP6g1s" class="btn" target="_blank">WhatsApp Channel</a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="services" class="services-section">
+            <h2>Our Services</h2>
+            <div class="services-container">
+                <div class="service-card">
+                    <h3>App Development</h3>
+                    <p>Development of various applications (Mobile Apps & Software Development).</p>
+                </div>
+                <div class="service-card">
+                    <h3>Web Development</h3>
+                    <p>Web Development.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Game Development</h3>
+                    <p>Game Development.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Cybersecurity</h3>
+                    <p>Programming hacking tools and cybersecurity.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Electronics Sales</h3>
+                    <p>Selling electronic devices.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a leading provider of innovative technology and IT services, dedicated to helping our clients achieve their goals with cutting-edge solutions. Our team of experts specializes in a wide range of technical fields, including software development, web design, and cybersecurity. At MARO Services, we believe in creating powerful, reliable, and user-friendly products that make a difference.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 All rights reserved to MARO.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
